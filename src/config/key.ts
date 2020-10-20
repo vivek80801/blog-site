@@ -1,0 +1,1 @@
+export const MONGO_URI = "mongod://localhost:2017"
