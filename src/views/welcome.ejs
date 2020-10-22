@@ -1,5 +1,6 @@
 <h1>Welcome To My App</h1>
-<form action="register" method="POST">
+<form action="users/register" method="POST">
+  <%- include("./partials/messages"); %>
   <label for="userName">User Name:</label>
   <input type="text" name="userName" placeholder="Enter Your User Name" />
   <label for="eamil">Email:</label>

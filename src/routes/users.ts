@@ -1,6 +1,7 @@
 import express from "express"
 import bcrypt from "bcryptjs"
 import User from "../models/User"
+import passport from "passport"
 
 const userRouter = express.Router()
 
@@ -34,12 +35,7 @@ userRouter.post("/register", (req: express.Request, res: express.Response) => {
         errors.push("password must be less then 20 charecters")
     }
     if (errors.length > 0) {
-        res.render("welcome", {
-            errors,
-            userName,
-            email,
-            password,
-        });
+        res.redirect("/")
     } else {
         User.findOne({ email: email }).then(user => {
             if (user) {
@@ -65,9 +61,25 @@ userRouter.post("/register", (req: express.Request, res: express.Response) => {
                         }
                     })
                 })
+                console.log(newUser)
+                res.redirect("/users/login")
             }
         })
     }
 })
 
-export default userRouter
+userRouter.post("/login", (req: express.Request, res: express.Response, next: express.NextFunction) => {
+    passport.authenticate("local", {
+        successRedirect: "/dashboard",
+        failureRedirect: "/users/login",
+        failureFlash: true
+    })(req, res, next)
+})
+
+userRouter.get("/logout", (req: express.Request, res: express.Response) => {
+    req.logOut()
+    req.flash("sucess_message", "You are logged out")
+    res.redirect("/users/login")
+})
+
+export default userRouter;

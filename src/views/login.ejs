@@ -1,1 +1,9 @@
 <h1>Log in</h1>
+<form action="/users/login" method="post">
+  <%- include("./partials/messages"); %>
+<label for="email" >Email:</label>
+<input type="email" name="email"/>
+<label for="password">Password:</label>
+<input type="password" name="password">
+<button type="submit">log in</button>
+</form>

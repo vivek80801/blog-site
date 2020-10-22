@@ -1,1 +1,5 @@
-<h1>Welcome to ejs</h1>
+<% if(typeof errors != "undefined") { %> <% errors.forEach(function(error){ %>
+    <h1>testing</h1>
+<%= error %> <% }); %> <% } %> <% if(success_msg != ""){ %>] <%= success_msg %>
+<% } %> <% if(error_msg != ""){ %> <%= error_msg %> <% } %> <% if(error != ""){
+%> <%= error %> <% } %>
