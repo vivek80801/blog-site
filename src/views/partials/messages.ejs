@@ -1,5 +1,9 @@
 <% if(typeof errors != "undefined") { %> <% errors.forEach(function(error){ %>
-    <h1>testing</h1>
-<%= error %> <% }); %> <% } %> <% if(success_msg != ""){ %>] <%= success_msg %>
-<% } %> <% if(error_msg != ""){ %> <%= error_msg %> <% } %> <% if(error != ""){
-%> <%= error %> <% } %>
+<div class="error"><%= error %></div>
+<% }); %> <% } %> <% if(success_msg != ""){ %>
+<div class="success"><%= success_msg %></div>
+<% } %> <% if(error_msg != ""){ %>
+<div class="error"><%= error_msg %> </div><% } %>
+<% if(error != ""){ %>
+<div class="error"><%= error %></div>
+<% } %>

@@ -1,9 +1,21 @@
 <h1>Log in</h1>
 <form action="/users/login" method="post">
   <%- include("./partials/messages"); %>
-<label for="email" >Email:</label>
-<input type="email" name="email"/>
-<label for="password">Password:</label>
-<input type="password" name="password">
-<button type="submit">log in</button>
+  <label for="email">Email:</label>
+  <input
+    type="email"
+    name="email"
+    placeholder="Enter your email"
+    value="<%= typeof email != 'undefined' ? email :'' %>"
+  />
+  <label for="password">Password:</label>
+  <input
+    type="password"
+    name="password"
+    placeholder="Enter your password"
+    value="<%= typeof password != 'undefined' ? password :'' %>"
+  />
+  <button type="submit">log in</button>
 </form>
+<br />
+Don't have an account <a href="/">Register</a>

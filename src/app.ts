@@ -8,9 +8,12 @@ import router from "./routes/index";
 import userRouter from './routes/users'
 import blogRouter from "./routes/blog"
 import { MONGO_URI } from "./config/key"
+import myPassport from "./config/passport"
 
 const app: express.Application = express()
 const port: string | number = process.env.PORT || 5000
+
+myPassport(passport)
 
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => console.log(`mongodb is connected on ${MONGO_URI}`)).catch(err => console.log(err))
 

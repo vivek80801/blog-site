@@ -24,18 +24,23 @@ userRouter.post("/register", (req: express.Request, res: express.Response) => {
     const errors: string[] = []
 
     if (!userName || !email || !password) {
-        errors.push("plaese fill the form")
-    } else if (userName.length < 3) {
+        errors.push("Plaese fill the form")
+    } if (userName.length < 3) {
         errors.push("user name must be of greater then 3 charecters")
-    } else if (userName.length > 20) {
+    } if (userName.length > 20) {
         errors.push("user name must be of less then 20 charecters")
-    } else if (password.length < 3) {
+    } if (password.length < 3) {
         errors.push("password must be greater then 3 charecters")
-    } else if (password.length > 20) {
+    } if (password.length > 20) {
         errors.push("password must be less then 20 charecters")
     }
     if (errors.length > 0) {
-        res.redirect("/")
+        res.render("welcome", {
+            errors,
+            userName,
+            email,
+            password,
+        })
     } else {
         User.findOne({ email: email }).then(user => {
             if (user) {
@@ -58,11 +63,16 @@ userRouter.post("/register", (req: express.Request, res: express.Response) => {
                             throw err
                         } else {
                             newUser.password = hash
+                            newUser.save().then(user => {
+                                req.flash(
+                                    "success_msg",
+                                    "you are now registered and you can log in"
+                                );
+                                res.redirect("/users/login")
+                            }).catch(err => console.log(err))
                         }
                     })
                 })
-                console.log(newUser)
-                res.redirect("/users/login")
             }
         })
     }

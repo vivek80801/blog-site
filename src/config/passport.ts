@@ -9,7 +9,7 @@ const passport = (passport: PassportStatic) => {
             User.findOne({ email: email }).then((user) => {
                 if (!user) {
                     return done(null, false, {
-                        message: "that email is not registered",
+                        message: "That email is not registered",
                     });
                 }
                 bcrypt.compare(password, user.password, (err, isMatch) => {
@@ -17,7 +17,7 @@ const passport = (passport: PassportStatic) => {
                     if (isMatch) {
                         return done(null, user);
                     } else {
-                        return done(null, false, { message: "passwod incorrect" });
+                        return done(null, false, { message: "password is incorrect" });
                     }
                 });
             }).catch((err) => console.log(err));

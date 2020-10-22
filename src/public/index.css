@@ -36,3 +36,11 @@ button {
   margin: 0.75rem;
   cursor: pointer;
 }
+
+.error {
+  color: #f00;
+}
+
+.success {
+  color: #0f0;
+}
