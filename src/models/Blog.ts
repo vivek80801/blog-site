@@ -8,6 +8,10 @@ const blogSchema = new mongoose.Schema({
     des: {
         type: String,
         required: true
+    },
+    img:{
+        type:String,
+        required:true
     }
 })
 

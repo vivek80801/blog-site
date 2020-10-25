@@ -1,16 +1,56 @@
 import express from "express"
 import ensureAunthenticated from "../config/auth"
 import Blog from "../models/Blog"
+import multer from "multer"
+import path from "path"
+
+const stroage = multer.diskStorage({
+    destination: "./src/public/upload/",
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname))
+    }
+})
+
+const upload = multer({
+    storage: stroage,
+    limits: { fileSize: 100000 },
+    fileFilter: (req, file, cb) => {
+        checkFileType(file, cb);
+    }
+}).single("blogImage");
+
+
+const checkFileType = (file: Express.Multer.File, cb: multer.FileFilterCallback) => {
+    const fileTypes = /jpeg|png|jpg/;
+    const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
+    const mimeType = fileTypes.test(file.mimetype);
+
+    if (mimeType && extname) {
+        return cb(null, true);
+    } else {
+        cb({ message: "file is not an image", name: "Error" });
+    }
+};
 
 const blogRouter = express.Router()
 
 interface blogBody {
     title: string,
+    blogImage: string,
     des: string
 }
 
-blogRouter.get("/", ensureAunthenticated, (req: express.Request, res: express.Response) => {
-    res.render("blogs")
+blogRouter.get("/", (req: express.Request, res: express.Response) => {
+    Blog.find((err, resp) => {
+        if (err) {
+            throw err
+        } else {
+            res.render("blogs", {
+                resp
+            })
+        }
+    })
+
 })
 
 blogRouter.get("/createblog", ensureAunthenticated, (req: express.Request, res: express.Response) => {
@@ -18,27 +58,48 @@ blogRouter.get("/createblog", ensureAunthenticated, (req: express.Request, res: 
 })
 
 blogRouter.post("/createblog", (req: express.Request, res: express.Response) => {
-    const { title, des }: blogBody = req.body
+    console.log(req.body)
+    const { title, des, blogImage }: blogBody = req.body
     const errors: string[] = []
     if (!title || !des) {
+        console.log(title, des)
         errors.push("Please fill the form")
     }
     if (errors.length > 0) {
-        res.render("blogs", { errors, title, des })
+        console.log(errors)
+        res.render("createBlog", { errors, title, des, blogImage })
     } else {
         Blog.findOne({ title: title }).then(blog => {
             if (blog) {
                 errors.push("Blog is already in database")
-                res.render("welcome", { errors, title, des })
+                res.render("createBlog", { errors, title, des, blogImage })
             } else {
-                const newBlog = new Blog({
-                    title,
-                    des,
-                })
-                newBlog.save().then(blog => {
-                    req.flash("success_message", "Blog is created sucressfully")
-                    res.redirect("/blog/createblog")
-                }).catch(err => console.log(err))
+                upload(req, res, (err: any) => {
+                    if (err) {
+                        errors.push(err)
+                    } else {
+                        if (req.file === undefined) {
+                            errors.push("Please only upload image")
+                        } else {
+
+                            const newBlog = new Blog({
+                                title,
+                                des,
+                                img: req.file.filename
+                            })
+                            newBlog.save().then(blog => {
+                                req.flash("success_message", "Blog is created sucressfully")
+                                res.render("/createBlog", {
+                                    file: `upload/${req.file.filename}`
+                                })
+                            }).catch(err => console.log(err))
+                            // res.render("index", {
+                            //   msg: "File Uploaded",
+                            //   file: `upload/${req.file.filename}`,
+                            // });
+                        }
+                    }
+                });
             }
         })
     }

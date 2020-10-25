@@ -1,8 +1,17 @@
 <h1>Create Blog</h1>
-<form method="POST" action="/blog/createblog">
+<form method="POST" action="/blog/createblog" enctype="multipart/form-data">
+    <% if (typeof errors != "undefined") { %>
+     <% errors.forEach(error => { %>
+        <span style="color: #f00;">
+            <%= error %> 
+        </span>
+     <% }) %>
+    <% } %>
     <label for="title">Title:</label>
     <input type="text" name="title" />
+    <input type="file" name="blogImage"/>
     <label for="des">Description:</label>
     <textarea name="des" cols="30" rows="10"></textarea>
     <button type="submit">create blog</button>
 </form>
+<a href="/users/logout">Log out</a>
