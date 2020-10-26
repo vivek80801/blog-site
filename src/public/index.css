@@ -1,55 +1,55 @@
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }
 
-h1{
-  text-transform: capitalize;
+h1 {
+	text-transform: capitalize;
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 0.75rem;
-  margin: 0.75rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 0.75rem;
+	margin: 0.75rem;
 }
 
 form {
-  padding: 0.75rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+	padding: 0.75rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 input {
-  padding: 0.75rem;
-  margin: 0.75rem;
-  outline: none;
+	padding: 0.75rem;
+	margin: 0.75rem;
+	outline: none;
 }
 
 button {
-  padding: 0.75rem;
-  margin: 0.75rem;
-  cursor: pointer;
+	padding: 0.75rem;
+	margin: 0.75rem;
+	cursor: pointer;
 }
 
 .error {
-  color: #f00;
+	color: #f00;
 }
 
 .success {
-  color: #0f0;
+	color: #0f0;
 }
 
-textarea{
-  padding: 0.75rem;
-  outline: none;
+textarea {
+	padding: 0.75rem;
+	outline: none;
 }

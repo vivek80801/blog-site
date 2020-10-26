@@ -18,22 +18,23 @@ myPassport(passport)
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => console.log(`mongodb is connected on ${MONGO_URI}`)).catch(err => console.log(err))
 
 app.use(express.urlencoded({ extended: true }))
+app.use(express.json());
 app.use(expressLoyouts)
 app.set("view engine", "ejs")
 app.set("views", "src/views")
 app.use(session({
-    secret: "mysecret",
-    resave: true,
-    saveUninitialized: true
+	secret: "mysecret",
+	resave: true,
+	saveUninitialized: true
 }))
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
 app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
-    res.locals.success_msg = req.flash("success_msg");
-    res.locals.error_msg = req.flash("error_msg");
-    res.locals.error = req.flash("error");
-    next()
+	res.locals.success_msg = req.flash("success_msg");
+	res.locals.error_msg = req.flash("error_msg");
+	res.locals.error = req.flash("error");
+	next()
 })
 app.use(express.static("./src/public"))
 app.use("/", router)
