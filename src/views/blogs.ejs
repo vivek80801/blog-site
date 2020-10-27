@@ -6,11 +6,12 @@
     <p>
         <%= singleBlog.des %>
     </p>
-    <a href="/blog/<%= singleBlog._id %>">Read more</a>
+    <a href="/blog/blog/<%= singleBlog._id %>">Read more</a>
  <% }) %>
  <% } else { %>
     <p>There is no blogs</p>
 <% } %>
+<br/>
 
 <a href="/blog/createblog">Create Blog</a>
 <a href="/users/logout">Log out</a>

@@ -39,13 +39,13 @@ interface blogBody {
 	des: string
 }
 
-blogRouter.get("/:id", (req: express.Request, res: express.Response) => {
+blogRouter.get("/blog/:id", (req: express.Request, res: express.Response) => {
 	const { id } = req.params
 	Blog.find((err, resp) => {
 		if (err) {
 			throw err
 		} else {
-			res.render("singleBlog", {
+			 res.render("singleBlog", {
 				resp,
 				id
 			})
@@ -118,7 +118,6 @@ blogRouter.post("/createblog", (req: express.Request, res: express.Response) => 
 							}).catch(err => console.log(err))
 						}
 					}
-
 				}
 			})
 		}
