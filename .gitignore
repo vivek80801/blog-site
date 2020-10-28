@@ -1,6 +1,6 @@
 /node_modules
 /dist
-/src/public/upload
+/public/upload
 
 *.log
 *.errors.log

@@ -5,7 +5,7 @@ import multer from "multer"
 import path from "path"
 
 const stroage = multer.diskStorage({
-	destination: "./src/public/upload/",
+	destination: "./public/upload/",
 	filename: (req, file, cb) => {
 		cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname))
 	}

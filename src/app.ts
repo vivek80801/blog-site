@@ -36,11 +36,11 @@ app.use((req: express.Request, res: express.Response, next: express.NextFunction
 	res.locals.error = req.flash("error");
 	next()
 })
-app.use(express.static("./src/public"))
+app.use(express.static("public"))
 app.use("/", router)
 app.use("/blog", blogRouter)
 app.use("/users", userRouter)
-app.use("/blog", express.static("./src/public"))
-app.use("/users", express.static("./src/public"))
+app.use("/blog", express.static("public"))
+app.use("/users", express.static("public"))
 
 app.listen(port, () => console.log(`server is runing on http://localhost:${port}`));
