@@ -1,4 +1,4 @@
-# Code Of Conduct
+# Code Of Conduct 👼
 
 - Be welcoming
 - Respect all people

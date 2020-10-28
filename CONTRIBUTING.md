@@ -1,10 +1,10 @@
-# Requirements
+# Requirements 🚀
 
 You will need to have nodejs install. if you haven't yet go to [nodejs.org](https://nodejs.org, "go to nodejs.org")
 
 You will also need mongodb as database
 
-## clone the repo
+## clone the repo 📇
 
 open your terminal and type
 
@@ -13,7 +13,7 @@ open your terminal and type
 git clone ..
 
 ```
-## navigating to file
+## navigating to file 📑
 
 ```bash
 
@@ -21,7 +21,7 @@ cd blog-site
 
 ```
 
-## Install all dependencies
+## Install all dependencies 📌
 
 ```bash
 
@@ -40,14 +40,14 @@ sudo service mongod start
 
 you will be prompt for your password
 
-## You are ready to start server
+## You are ready to start server 🏹
 
 ```bash
 
-node index.js
+npm run dev
 
 ```
 
-## see this blog-site is runing on your browser
+## see this blog-site is runing on your browser 🎉
 
 Go to [localhost:5000](http://localhost:5000, "Go to localhost")
