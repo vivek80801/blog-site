@@ -4,3 +4,6 @@
 
 *.log
 *.errors.log
+*.env
+*.development.env
+*.production.env

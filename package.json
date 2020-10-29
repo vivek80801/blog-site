@@ -6,7 +6,8 @@
 	"scripts": {
 		"start": "node dist/app.js",
 		"dev": "nodemon src/app.ts",
-		"build": "tsc -p ."
+		"build": "tsc -p .",
+		"lint": "eslint --fix src && eslint --fix public"
 	},
 	"keywords": [],
 	"author": "",
@@ -44,6 +45,7 @@
 		"eslint-plugin-prettier": "^3.1.4",
 		"nodemon": "^2.0.4",
 		"prettier": "^2.1.2",
+		"prettier-eslint": "^11.0.0",
 		"ts-node": "^9.0.0",
 		"typescript": "^4.0.2"
 	}

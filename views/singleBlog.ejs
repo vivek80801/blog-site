@@ -1,3 +1,4 @@
+<span></span>
 <% resp.forEach(blog => { %>
  <% if (blog.id===id) { %>
     <h1>
@@ -7,7 +8,10 @@
     <p>
         <%= blog.des %>
     </p>
-				<button data-test="<%= blog.id %>">Delete</button>
+    <a href="/blog">
+        <button id="delete" data-test="<%= blog.id %>" style="background-color: #00f;color: #fff;cursor: pointer; padding: 0.75rem; outline: none; border: none;">Delete</button>
+    </a>
+      
  <% } %>
 <% }) %>
 <a href="/blog">Blogs</a>
