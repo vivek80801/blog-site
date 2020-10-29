@@ -38,13 +38,34 @@ sudo service mongod start
 
 ```
 
-you will be prompt for your password
+you will be prompt for your `password`
+Enter your password then you ready to go.
+
+when you are editing code. Don't forget to `stop mongod`.
+To stop your mongod
+
+```bash
+
+sudo service mongod stop
+
+```
+
+Again, you will be prompt for your `password`.
+Enter your password
 
 ## You are ready to start server 🏹
 
 ```bash
 
 npm run dev
+
+```
+
+## To format your code
+
+```npm
+
+npm run lint
 
 ```
 

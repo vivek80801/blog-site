@@ -11,7 +11,7 @@ router.get(
 	"/dashboard",
 	ensureAunthenticated,
 	(req: express.Request, res: express.Response) => {
-		res.render("dashboard");
+		res.render("dashboard", req.user);
 	}
 );
 

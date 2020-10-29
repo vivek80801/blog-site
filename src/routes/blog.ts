@@ -42,22 +42,27 @@ interface blogBody {
 	des: string;
 }
 
-blogRouter.get("/blog/:id", (req: express.Request, res: express.Response) => {
-	const { id } = req.params;
-	Blog.find((err, resp) => {
-		if (err) {
-			throw err;
-		} else {
-			res.render("singleBlog", {
-				resp,
-				id,
-			});
-		}
-	});
-});
+blogRouter.get(
+	"/blog/:id",
+	ensureAunthenticated,
+	(req: express.Request, res: express.Response) => {
+		const { id } = req.params;
+		Blog.find((err, resp) => {
+			if (err) {
+				throw err;
+			} else {
+				res.render("singleBlog", {
+					resp,
+					id,
+				});
+			}
+		});
+	}
+);
 
 blogRouter.delete(
 	"/blog/:id",
+	ensureAunthenticated,
 	(req: express.Request, res: express.Response) => {
 		const { id } = req.params;
 		Blog.deleteOne({ _id: id }, (err) => {
@@ -65,25 +70,26 @@ blogRouter.delete(
 				throw err;
 			}
 		})
-			.then(() => {
-				console.log("blog is deleted");
-			})
+			.then(() => res.status(200))
 			.catch((err) => console.log(err));
-		res.status(200);
 	}
 );
 
-blogRouter.get("/", (req: express.Request, res: express.Response) => {
-	Blog.find((err, resp) => {
-		if (err) {
-			throw err;
-		} else {
-			res.render("blogs", {
-				resp,
-			});
-		}
-	});
-});
+blogRouter.get(
+	"/",
+	ensureAunthenticated,
+	(req: express.Request, res: express.Response) => {
+		Blog.find((err, resp) => {
+			if (err) {
+				throw err;
+			} else {
+				res.render("blogs", {
+					resp,
+				});
+			}
+		});
+	}
+);
 
 blogRouter.get(
 	"/createblog",
@@ -95,16 +101,15 @@ blogRouter.get(
 
 blogRouter.post(
 	"/createblog",
+	ensureAunthenticated,
 	(req: express.Request, res: express.Response) => {
 		upload(req, res, (err: any) => {
 			const { title, des, blogImage }: blogBody = req.body;
 			const errors: string[] = [];
 			if (!title || !des) {
-				console.log(title, des);
 				errors.push("Please fill the form");
 			}
 			if (errors.length > 0) {
-				console.log(errors);
 				res.render("createBlog", { errors, title, des, blogImage });
 			} else {
 				Blog.findOne({ title: title }).then((blog) => {

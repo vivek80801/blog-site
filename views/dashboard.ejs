@@ -1,4 +1,12 @@
 <h1>Dashboard</h1>
 <br/>
+<% if( userName !== undefined && email !== undefined && password !== undefined ){ %>
+    Hello, <%= userName %>
+    <br/>
+    Your email is <%= email %>
+<% } else { %>
+  something went wrong
+<% } %>
+<br />
 <a href="/blog">Blogs</a>
 <a href="/users/logout">Log out</a>

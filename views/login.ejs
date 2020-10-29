@@ -5,6 +5,7 @@
   <input
     type="email"
     name="email"
+    autocomplete="current-password"
     placeholder="Enter your email"
     value="<%= typeof email != 'undefined' ? email :'' %>"
   />
@@ -13,6 +14,7 @@
     type="password"
     name="password"
     placeholder="Enter your password"
+    autocomplete="current-password"
     value="<%= typeof password != 'undefined' ? password :'' %>"
   />
   <button type="submit">log in</button>

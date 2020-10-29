@@ -1,7 +1,13 @@
 /node_modules
+/client/node_modules
+/client/build
+/client/dist
 /dist
 /public/upload
 
+**/*.env
+**/*.errors.log
+**/*.log
 *.log
 *.errors.log
 *.env

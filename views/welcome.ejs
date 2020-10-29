@@ -12,6 +12,7 @@
 	<input
 		type="email"
 		name="email"
+		autocomplete="current-email"
 		placeholder="Enter Your Email"
 		value="<%= typeof email != 'undefined' ? email :'' %>"
 	/>
@@ -19,6 +20,7 @@
 	<input
 		type="password"
 		name="password"
+		autocomplete="current-password"
 		placeholder="Enter Your Password"
 		value="<%= typeof password != 'undefined' ? password :'' %>"
 	/>
