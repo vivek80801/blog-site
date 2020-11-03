@@ -29,6 +29,28 @@ npm install
 
 ```
 
+#### Install dependecy for client side
+
+```bash
+
+cd client
+
+```
+
+```bash
+
+npm install
+
+```
+
+```bash
+
+cd ../
+
+```
+
+## setup mongodb
+
 if you are on linux
 then you need to run
 
@@ -53,6 +75,10 @@ sudo service mongod stop
 Again, you will be prompt for your `password`.
 Enter your password
 
+Before stopping `mongod`. Make sure, you stopped server
+
+If you are on `windows` or `mac`. please read mongodb docs
+
 ## You are ready to start server 🏹
 
 ```bash
@@ -60,6 +86,21 @@ Enter your password
 npm run dev
 
 ```
+
+## start client
+
+```bash
+
+cd client/
+
+```
+
+```bash
+
+npm run dev
+
+```
+
 
 ## To format your code
 
@@ -71,4 +112,6 @@ npm run lint
 
 ## see this blog-site is runing on your browser 🎉
 
-Go to [localhost:5000](http://localhost:5000, "Go to localhost")
+Go to [localhost:5000](http://localhost:5000, "Go to admin side of blog-website")
+
+Go tp [localhost:30000](http://localhost:3000, "Go to client side of blog-website")
