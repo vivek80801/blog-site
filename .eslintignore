@@ -1,7 +1,6 @@
 /node_modules
 **/**/node_modules
 /public/*.js
-/client
 /dist
-*.tsx
 /views
+/client/pages/_app.tsx
