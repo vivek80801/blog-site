@@ -9,6 +9,7 @@ import userRouter from "./routes/users";
 import blogRouter from "./routes/blog";
 import { MONGO_URI } from "./config/key";
 import myPassport from "./config/passport";
+import myBlogRouter from "./routes/myblog";
 
 const app: express.Application = express();
 const port: string | number = process.env.PORT || 5000;
@@ -46,6 +47,7 @@ app.use(express.static("public"));
 app.use("/", router);
 app.use("/blog", blogRouter);
 app.use("/users", userRouter);
+app.use("/myblog", myBlogRouter);
 app.use("/blog", express.static("public"));
 app.use("/users", express.static("public"));
 
