@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import Link from "next/link";
 import Head from "next/head";
-import Navbar from "../components/Navbar";
 import loader from "../styles/loader.module.scss";
-import blogs from "../styles/blogs.module.scss";
+import blog from "../styles/blogs.module.scss";
 
 interface Blog {
 	_id: string;
@@ -11,34 +10,41 @@ interface Blog {
 	des: string;
 }
 
-const Home: React.FC = (): JSX.Element => {
-	const [blog, setBlog] = useState<Blog[]>([]);
-	useEffect(() => {
-		setTimeout(() => {
-			fetch("http://localhost:5000/myblog")
-				.then((res) => res.json())
-				.then((data) => setBlog(data))
-				.catch((err) => console.log(err));
-		}, 5000);
-	});
+const getBlog = async () => {
+	const res = await fetch("http://localhost:5000/myblog");
+	const data: Blog[] = await res.json();
+	return data;
+};
+export const myBlog = getBlog();
+
+export const getStaticProps = async () => {
+	const blogs = await getBlog();
+	return {
+		props: { blogs },
+	};
+};
+
+const Home: React.FC<{ blogs: Blog[] }> = (props): JSX.Element => {
+	const { blogs } = props;
 	return (
 		<>
 			<Head>
 				<title>My blog website</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<Navbar />
 			<h1 style={{ textAlign: "center" }}>My Blogs</h1>
-			{blog.length > 0 ? (
-				blog.map((b) => (
-					<div key={b._id} className={blogs.blogs}>
-						<h2>{b.title}</h2>
-						<img src={`http://localhost:5000/upload/${b.img}`} alt="" />
-						<p>{b.des}</p>
+			{blogs.length > 0 ? (
+				blogs.map((b) => (
+					<div key={b._id} className={blog.blogs}>
+						<Link href={`/details/${b._id}`}>
+							<a>
+								<h4>{b.title}</h4>
+							</a>
+						</Link>
 					</div>
 				))
 			) : (
-				<div className={blogs.blogs}>
+				<div className={blog.blogs}>
 					<div className={loader.loader}></div>
 				</div>
 			)}
