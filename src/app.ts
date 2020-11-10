@@ -50,6 +50,12 @@ app.use("/users", userRouter);
 app.use("/myblog", myBlogRouter);
 app.use("/blog", express.static("public"));
 app.use("/users", express.static("public"));
+app.use(
+	(req: express.Request, res: express.Response, next: express.NextFunction) => {
+		res.render("404-page");
+		next();
+	}
+);
 
 app.listen(port, () =>
 	console.log(`server is runing on http://localhost:${port}`)

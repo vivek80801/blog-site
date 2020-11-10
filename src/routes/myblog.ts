@@ -23,4 +23,18 @@ myBlogRouter.get(
 	}
 );
 
+myBlogRouter.get(
+	"/:id",
+	cors(corsOptions),
+	(req: express.Request, res: express.Response) => {
+		const { id } = req.params;
+		Blog.findById(id, (err, resp) => {
+			if (err) {
+				throw err;
+			}
+			res.json(resp);
+		});
+	}
+);
+
 export default myBlogRouter;

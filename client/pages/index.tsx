@@ -3,7 +3,7 @@ import Head from "next/head";
 import loader from "../styles/loader.module.scss";
 import blog from "../styles/blogs.module.scss";
 
-interface Blog {
+export interface Blog {
 	_id: string;
 	title: string;
 	img: string;
@@ -21,6 +21,7 @@ export const getStaticProps = async () => {
 	const blogs = await getBlog();
 	return {
 		props: { blogs },
+		revalidate: 1000 * 60 * 24,
 	};
 };
 

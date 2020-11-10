@@ -53,3 +53,11 @@ textarea {
 	padding: 0.75rem;
 	outline: none;
 }
+
+.not-found{
+	height: 90vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}

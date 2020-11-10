@@ -3,6 +3,7 @@ import ensureAunthenticated from "../config/auth";
 import Blog from "../models/Blog";
 import multer from "multer";
 import path from "path";
+import fs from "fs";
 
 const stroage = multer.diskStorage({
 	destination: "./public/upload/",
@@ -65,6 +66,15 @@ blogRouter.delete(
 	ensureAunthenticated,
 	(req: express.Request, res: express.Response) => {
 		const { id } = req.params;
+		Blog.findById(id, (err, resp) => {
+			if (resp !== null) {
+				fs.unlink(`./public/upload/${resp.img}`, (err) => {
+					if (err) {
+						throw err;
+					}
+				});
+			}
+		});
 		Blog.deleteOne({ _id: id }, (err) => {
 			if (err) {
 				throw err;
