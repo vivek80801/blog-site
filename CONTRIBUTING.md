@@ -1,6 +1,6 @@
 # Requirements 🚀
 
-You will need to have nodejs install. if you haven't yet go to [nodejs.org](https://nodejs.org, "go to nodejs.org")
+You will need to have nodejs install. if you haven't yet go to [nodejs.org](https://nodejs.org "go to nodejs.org")
 
 You will also need mongodb as database
 
@@ -102,7 +102,7 @@ npm run dev
 ```
 
 
-## To format your code
+### To format your code
 
 ```npm
 
@@ -112,6 +112,5 @@ npm run lint
 
 ## see this blog-site is runing on your browser 🎉
 
-Go to [localhost:5000](http://localhost:5000, "Go to admin side of blog-website")
-
-Go tp [localhost:3000](http://localhost:3000, "Go to client side of blog-website")
+Server is runing on [localhost:5000](http://localhost:5000, "Go to admin side of blog-website")
+Client is runing On [localhost:3000](http://localhost:3000, "Go to client side of blog-website")
