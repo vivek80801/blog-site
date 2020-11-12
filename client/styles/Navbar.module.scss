@@ -5,6 +5,7 @@ $navbarBackground:rgb(29, 235, 97);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 100vw;
     .h1{
         text-transform: capitalize;
     }

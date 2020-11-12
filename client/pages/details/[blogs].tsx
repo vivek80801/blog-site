@@ -2,7 +2,8 @@ import Link from "next/link";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { Blog } from "../index";
-import blogs from "../../styles/blogs.module.scss";
+import loader from "../styles/loader.module.scss";
+import blog from "../../styles/blogs.module.scss";
 
 const getPost = async (id: string) => {
 	const res = await fetch(`http://localhost:5000/myblog/${id}`);
@@ -40,11 +41,13 @@ const Blogs: React.FC<{ blog: Blog }> = (props): JSX.Element => {
 			<Link href="/">Go Back</Link>
 			{router.isFallback ? (
 				<>
-					<h1>Loading...</h1>
+					<div className={blog.blogs}>
+						<div className={loader.loader}></div>
+					</div>
 				</>
 			) : (
 				<>
-					<div className={blogs.blogs}>
+					<div className={blog.blogs}>
 						<h1>{title}</h1>
 						<img src={`http://localhost:5000/upload/${img}`} alt={title} />
 						<p>{des}</p>
