@@ -114,4 +114,4 @@ npm run lint
 
 Go to [localhost:5000](http://localhost:5000, "Go to admin side of blog-website")
 
-Go tp [localhost:30000](http://localhost:3000, "Go to client side of blog-website")
+Go tp [localhost:3000](http://localhost:3000, "Go to client side of blog-website")
