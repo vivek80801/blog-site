@@ -10,7 +10,7 @@ open your terminal and type
 
 ```bash
 
-git clone ..
+git clone https://github.com/vivek80801/blog-site.git
 
 ```
 ## navigating to file 📑
