@@ -16,10 +16,17 @@ const port: string | number = process.env.PORT || 5000;
 
 myPassport(passport);
 
-mongoose
-	.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-	.then(() => console.log(`mongodb is connected on ${MONGO_URI}`))
-	.catch((err) => console.log(err));
+const connectDB = async () => {
+	try {
+		await mongoose.connect(MONGO_URI, {
+			useNewUrlParser: true,
+			useUnifiedTopology: true,
+		});
+		console.log(`mongodb is connected on ${MONGO_URI}`);
+	} catch (error) {
+		console.log(`Error: ${error}`);
+	}
+};
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -56,6 +63,8 @@ app.use(
 		next();
 	}
 );
+
+connectDB();
 
 app.listen(port, () =>
 	console.log(`server is runing on http://localhost:${port}`)

@@ -1,6 +1,8 @@
-$navbarBackground:rgb(29, 235, 97);
+@import "variable.scss";
+@import "util.scss";
+
 .navbar {
-    background-color:$navbarBackground;
+    @include set-background($navbarBackground);
     padding: 0.75rem;
     display: flex;
     justify-content: space-between;

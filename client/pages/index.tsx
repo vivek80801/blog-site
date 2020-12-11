@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Head from "next/head";
-import loader from "../styles/loader.module.scss";
-import blog from "../styles/blogs.module.scss";
+import loader from "../scss/loader.module.scss";
+import blog from "../scss/blogs.module.scss";
 
 export interface Blog {
 	_id: string;

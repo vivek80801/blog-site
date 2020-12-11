@@ -1,0 +1,12 @@
+@function set-text-color($color) {
+    @if (lightness($color) > 70) {
+        @return #fff;
+    }@else {
+        @return #000;
+    }
+}
+
+@mixin  set-background($color) {
+    background-color: $color;
+    color: set-text-color(($color));
+}
