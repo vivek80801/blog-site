@@ -1,4 +1,4 @@
-import navbar from "../styles/Navbar.module.scss";
+import navbar from "../scss/navbar.module.scss";
 import Link from "next/link";
 
 const Navbar: React.FC = (): JSX.Element => {

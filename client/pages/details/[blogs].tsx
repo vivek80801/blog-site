@@ -2,7 +2,7 @@ import Link from "next/link";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { Blog } from "../index";
-import loader from "../scss/loader.module.scss";
+import loader from "../../scss/loader.module.scss";
 import blog from "../../scss/blogs.module.scss";
 
 const getPost = async (id: string) => {
