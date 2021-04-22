@@ -1,9 +1,9 @@
 <h1>Dashboard</h1>
 <br/>
-<% if( userName !== undefined && email !== undefined && password !== undefined ){ %>
-    Hello, <%= userName %>
+<% if( user.userName !== undefined && user.email !== undefined && user.password !== undefined ){ %>
+    Hello, <%= user.userName %>
     <br/>
-    Your email is <%= email %>
+    Your email is <%= user.email %>
 <% } else { %>
   something went wrong
 <% } %>

@@ -55,6 +55,7 @@ blogRouter.get(
 				res.render("singleBlog", {
 					resp,
 					id,
+					auth: req.isAuthenticated()
 				});
 			}
 		});
@@ -95,6 +96,7 @@ blogRouter.get(
 			} else {
 				res.render("blogs", {
 					resp,
+					auth: req.isAuthenticated()
 				});
 			}
 		});
@@ -105,7 +107,7 @@ blogRouter.get(
 	"/createblog",
 	ensureAunthenticated,
 	(req: express.Request, res: express.Response) => {
-		res.render("createBlog");
+		res.render("createBlog", {auth: req.isAuthenticated()});
 	}
 );
 

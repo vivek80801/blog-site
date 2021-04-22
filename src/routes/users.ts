@@ -16,7 +16,7 @@ userRouter.get("/", (req: express.Request, res: express.Response) => {
 });
 
 userRouter.get("/login", (req: express.Request, res: express.Response) => {
-	res.render("login");
+	res.render("login", {auth:req.isAuthenticated()});
 });
 
 userRouter.post("/register", (req: express.Request, res: express.Response) => {
@@ -39,22 +39,17 @@ userRouter.post("/register", (req: express.Request, res: express.Response) => {
 		errors.push("password must be less then 20 charecters");
 	}
 	if (errors.length > 0) {
-		res.render("welcome", {
-			errors,
-			userName,
-			email,
-			password,
-		});
+		errors.forEach(err => {
+			req.flash("error_msg", err)
+		})
+		res.redirect("/")
 	} else {
 		User.findOne({ email: email }).then((user) => {
 			if (user) {
-				errors.push("User is already register");
-				res.render("welcome", {
-					errors,
-					userName,
-					email,
-					password,
-				});
+				errors.forEach(err => {
+					req.flash("error_msg", err)
+				})
+				res.redirect("/")
 			} else {
 				const newUser = new User({
 					userName,

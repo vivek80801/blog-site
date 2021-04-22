@@ -1,9 +1,24 @@
-<% if(typeof errors != "undefined") { %> <% errors.forEach(function(error){ %>
-<div class="error"><%= error %></div>
-<% }); %> <% } %> <% if(success_msg != ""){ %>
-<div class="success"><%= success_msg %></div>
-<% } %> <% if(error_msg != ""){ %>
-<div class="error"><%= error_msg %> </div><% } %>
-<% if(error != ""){ %>
-<div class="error"><%= error %></div>
-<% } %>
+<% if(typeof errors !="undefined" ) { %>
+    <% errors.forEach(function(error){ %>
+        <div class="error">
+            <%= error %>
+        </div>
+        <% }); %>
+            <% } %>
+                <% if(success_msg !="" ){ %>
+                    <div class="success">
+                        <%= success_msg %>
+                    </div>
+                    <% } %>
+                        <% if(error_msg !="undefined" ){ %>
+                            <% error_msg.forEach(function(error){ %>
+                                <div class="error">
+                                    <%= error %>
+                                </div>
+                                <% }); %>
+                            <% } %>
+                                <% if(error !="" ){ %>
+                                    <div class="error">
+                                        <%= error %>
+                                    </div>
+                                    <% } %>

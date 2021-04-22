@@ -12,6 +12,36 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+header{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: hsl(224, 81%, 10%);
+	color: hsl(0, 0%, 100%);
+	padding: 2rem;
+}
+
+header > nav > ul{
+	display: flex;
+	justify-content: center;
+	padding: auto;
+}
+
+header > nav > ul >li {
+	list-style: none;
+	padding: 00.75rem;
+	text-transform: capitalize;
+	border-radius: 0.75rem;
+	cursor: pointer;
+}
+header > nav > ul >li:hover{
+	background-color: hsl(224, 77%, 29%);
+}
+
+header > nav >ul > li >a {
+	color: hsl(0, 0%, 100%);
+	text-decoration: none;
+}
 .container {
 	display: flex;
 	justify-content: center;
@@ -39,14 +69,27 @@ button {
 	padding: 0.75rem;
 	margin: 0.75rem;
 	cursor: pointer;
+	background-color: hsl(224, 81%, 10%);
+	color: hsl(0, 0%, 100%);
+	outline: none;
+	border: none;
+	border-radius: 0.75rem;
 }
 
 .error {
-	color: #f00;
+	background-color: hsl(0, 93%, 17%);
+	color:  hsl(0, 0%, 100%);
+	padding: 00.75rem;
+	margin: 0.75rem;
+	border-radius: 0.75rem;
 }
 
 .success {
-	color: #0f0;
+	background-color: hsl(138, 93%, 17%);
+	color:  hsl(0, 0%, 100%);
+	padding: 00.75rem;
+	margin: 0.75rem;
+	border-radius: 0.75rem;
 }
 
 textarea {
