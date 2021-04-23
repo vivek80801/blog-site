@@ -122,12 +122,12 @@ blogRouter.post(
 				errors.push("Please fill the form");
 			}
 			if (errors.length > 0) {
-				res.render("createBlog", { errors, title, des, blogImage });
+				res.render("createBlog", { errors, title, des, blogImage, auth: req.isAuthenticated() });
 			} else {
 				Blog.findOne({ title: title }).then((blog) => {
 					if (blog) {
 						errors.push("Blog is already in database");
-						res.render("createBlog", { errors, title, des, blogImage });
+						res.render("createBlog", { errors, title, des, blogImage, auth: req.isAuthenticated() });
 					} else {
 						if (err) {
 							errors.push(err);
@@ -146,6 +146,7 @@ blogRouter.post(
 										req.flash("success_message", "Blog is created sucressfully");
 										res.render("createBlog", {
 											file: `upload/${req.file.filename}`,
+											auth: req.isAuthenticated()
 										});
 									})
 									.catch((err) => console.log(err));

@@ -6,6 +6,16 @@ This is a blog website. There is two ways to access blogs by server and nextjs. 
 
 You can `create blog`, `delete blog`, `see blog` and `show blogs to users`.
 
+## Screen shots:
+![home-page](./screenShots/home-screen.png)
+![home-page-with-errors](./screenShots/home-page-with-errors.png)
+![login-page-without-errors](./screenShots/login-page.png)
+![login-page-errors](./screenShots/login-page-with-errors.png)
+![dashboard](./screenShots/dashboard-page.png)
+![blogs-page](./screenShots/blogs-page.png)
+![blogs-page-with-blog](./screenShots/blog-page-with-blog.png)
+![blog-details-page](./screenShots/blog-details-page.png)
+
 ## willing to contribute 🙋  ?
 
 please open an [issue](https://github.com/vivek80801/blog-site/issues "Go to issue tab")
