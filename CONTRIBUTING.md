@@ -4,6 +4,15 @@ You will need to have nodejs install. if you haven't yet go to [nodejs.org](http
 
 You will also need mongodb as database
 
+### If you have `docker` and `docker-compose` installed. You don't need to follow instruction given below. You can simple run
+
+```sh
+
+docker-compose up
+
+```
+open [localhost](http://localhost/ "Go to localhost")
+
 ## clone the repo 📇
 
 open your terminal and type
