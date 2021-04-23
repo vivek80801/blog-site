@@ -19,14 +19,14 @@
 		<nav>
 			<ul>
 				<li><a href="/">home</a></li>
-				<% if (auth) { %>
+				<% if (auth ==true && auth !="undefined" ) { %>
 					<li><a href="/dashboard">dashboard</a></li>
 					<li><a href="/blog">blogs</a></li>
 					<li><a href="/blog/createblog">create blog</a></li>
-				 <li><a href="/users/logout">log out</a></li>
-				<% } else { %>
-				<li><a href="/users/login">log in</a></li>
-				<% } %>
+					<li><a href="/users/logout">log out</a></li>
+					<% } else { %>
+						<li><a href="/users/login">log in</a></li>
+						<% } %>
 			</ul>
 		</nav>
 	</header>

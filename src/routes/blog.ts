@@ -1,115 +1,16 @@
 import express from "express";
 import ensureAunthenticated from "../config/auth";
 import Blog from "../models/Blog";
-import multer from "multer";
-import path from "path";
-import fs from "fs";
-
-const stroage = multer.diskStorage({
-	destination: "./public/upload/",
-	filename: (req, file, cb) => {
-		cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
-	},
-});
-
-const upload = multer({
-	storage: stroage,
-	limits: { fileSize: 100000 },
-	fileFilter: (req, file, cb) => {
-		checkFileType(file, cb);
-	},
-}).single("blogImage");
-
-const checkFileType = (
-	file: Express.Multer.File,
-	cb: multer.FileFilterCallback
-) => {
-	const fileTypes = /jpeg|png|jpg/;
-	const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
-	const mimeType = fileTypes.test(file.mimetype);
-
-	if (mimeType && extname) {
-		return cb(null, true);
-	} else {
-		cb({ message: "file is not an image", name: "Error" });
-	}
-};
+import { upload } from "../controller/services/microservices/blog";
+import { blogBody } from "../../index";
+import { handleGetSingleBlog, handleDeleteSingleBlog, handleGetAllBlog, handleGetCreateBlog } from "../controller/blog"
 
 const blogRouter = express.Router();
 
-interface blogBody {
-	title: string;
-	blogImage: string;
-	des: string;
-}
-
-blogRouter.get(
-	"/blog/:id",
-	ensureAunthenticated,
-	(req: express.Request, res: express.Response) => {
-		const { id } = req.params;
-		Blog.find((err, resp) => {
-			if (err) {
-				throw err;
-			} else {
-				res.render("singleBlog", {
-					resp,
-					id,
-					auth: req.isAuthenticated()
-				});
-			}
-		});
-	}
-);
-
-blogRouter.delete(
-	"/blog/:id",
-	ensureAunthenticated,
-	(req: express.Request, res: express.Response) => {
-		const { id } = req.params;
-		Blog.findById(id, (err, resp) => {
-			if (resp !== null) {
-				fs.unlink(`./public/upload/${resp.img}`, (err) => {
-					if (err) {
-						throw err;
-					}
-				});
-			}
-		});
-		Blog.deleteOne({ _id: id }, (err) => {
-			if (err) {
-				throw err;
-			}
-		})
-			.then(() => res.status(200))
-			.catch((err) => console.log(err));
-	}
-);
-
-blogRouter.get(
-	"/",
-	ensureAunthenticated,
-	(req: express.Request, res: express.Response) => {
-		Blog.find((err, resp) => {
-			if (err) {
-				throw err;
-			} else {
-				res.render("blogs", {
-					resp,
-					auth: req.isAuthenticated()
-				});
-			}
-		});
-	}
-);
-
-blogRouter.get(
-	"/createblog",
-	ensureAunthenticated,
-	(req: express.Request, res: express.Response) => {
-		res.render("createBlog", {auth: req.isAuthenticated()});
-	}
-);
+blogRouter.get("/blog/:id", ensureAunthenticated, handleGetSingleBlog);
+blogRouter.delete("/blog/:id", ensureAunthenticated, handleDeleteSingleBlog);
+blogRouter.get("/", ensureAunthenticated, handleGetAllBlog);
+blogRouter.get("/createblog", ensureAunthenticated, handleGetCreateBlog);
 
 blogRouter.post(
 	"/createblog",

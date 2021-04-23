@@ -1,18 +1,10 @@
 import express from "express";
 import ensureAunthenticated from "../config/auth";
+import { handleIndexRoute, handleDashboard } from "../controller/index"
 
 const router = express.Router();
 
-router.get("/", (req: express.Request, res: express.Response) => {
-	res.render("welcome", {auth:req.isAuthenticated()});
-});
-
-router.get(
-	"/dashboard",
-	ensureAunthenticated,
-	(req: express.Request, res: express.Response) => {
-		res.render("dashboard", {auth:req.isAuthenticated(), user: req.user});
-	}
-);
+router.get("/", handleIndexRoute);
+router.get("/dashboard", ensureAunthenticated, handleDashboard);
 
 export default router;
