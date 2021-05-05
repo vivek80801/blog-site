@@ -19,7 +19,7 @@ export const handleGetSingleBlog = (req: express.Request, res: express.Response)
 
 export const handleDeleteSingleBlog = (req: express.Request, res: express.Response) => {
     const { id } = req.params;
-    Blog.findById(id, (err, resp) => {
+    Blog.findById(id, (err:any, resp:any) => {
         if (resp !== null) {
             fs.unlink(`./public/upload/${resp.img}`, (err) => {
                 if (err) {

@@ -29,7 +29,7 @@ const passport = (passport: PassportStatic) => {
 		done(null, user.id);
 	});
 	passport.deserializeUser((id, done) => {
-		User.findById(id, (err, user) => {
+		User.findById(id, (err:any, user:any) => {
 			done(err, user);
 		});
 	});

@@ -1,8 +1,7 @@
-import { Request, Response } from "express"
+import { Request, Response } from "express";
 
 export const handleIndexRoute = (req: Request, res: Response) => {
-	console.log(`auth: ${req.isAuthenticated()}`)
-	res.render("welcome", { auth: req.isAuthenticated(), test: "vivek kumkar" });
+	res.render("welcome", { auth: req.isAuthenticated()});
 }
 
 export const handleDashboard = (req: Request, res: Response) => {

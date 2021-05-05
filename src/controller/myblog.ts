@@ -14,7 +14,7 @@ export const handleGetMyBlog = (req: express.Request, res: express.Response) => 
 
 export const handleGetAllMyBlog = (req: express.Request, res: express.Response) => {
     const { id } = req.params;
-    Blog.findById(id, (err, resp) => {
+    Blog.findById(id, (err:any, resp:any) => {
         if (err) {
             throw err;
         }
