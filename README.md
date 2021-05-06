@@ -7,6 +7,13 @@ This is a blog website. There is two ways to access blogs by server and nextjs. 
 You can `create blog`, `delete blog`, `see blog` and `show blogs to users`.
 
 ## Screen shots:
+
+<video width="320" height="240" controls>
+    <source src="./screenShots/showing-app.mp4">
+    Your browser does not support the video tag.
+</video>
+
+
 ![home-page](./screenShots/home-screen.png)
 ![home-page-with-errors](./screenShots/home-page-with-errors.png)
 ![login-page-without-errors](./screenShots/login-page.png)
